@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: alpine
+spec:
+  containers:
+    - name: alpine-container
+      image: alpine:3.20 # Use a recent Alpine version
+      command: ["sleep", "3600"]
+  dnsPolicy: None
+  dnsConfig:
+    nameservers:
+      - "8.8.8.8" # Example: Google Public DNS
+      - "8.8.4.4"
+    searches:
+      - "default.svc.cluster.local"
+      - "svc.cluster.local"
+      - "cluster.local"
+    options:
+      - name: ndots
+        value: "5"
